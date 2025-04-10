@@ -7,12 +7,12 @@ router.get('/', function(req, res, next) {
 });
 
 
-// var express = require('express');
-const Holograms_controllers= require('../controllers/Holograms');
+var express = require('express');
+const Holograms_controlers= require('../controllers/Holograms');
 var router = express.Router();
 /* GET costumes */
-router.get('/', Holograms_controllers.Holograms_view_all_Page );
+router.get('/', Holograms_controlers.Holograms_view_all_Page );
 module.exports = router;
 
 
-module.exports = router;
+
