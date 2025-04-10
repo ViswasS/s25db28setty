@@ -1,29 +1,17 @@
 extends layout
 
 block content
-  h1 Viswas
-  h2 Search results: Holograms
-
-  - var results = [{ origin: 'Interference of Light', tone: 'Yellow', clarity: 8 }, { origin: 'Recording the Pattern', tone: 'Black', clarity: 6 }, { origin: 'Reconstructing the Image', tone: 'White', clarity: 9 }]
+  h1= title
+  - let items = results
+  p Below are some holograms search results:
 
   .container-fluid
     .row
-      each item, index in results
-        .col-sm-2(style="border:1px solid black; padding:10px; margin:5px;")
-          h6 Holograms
-          p Origin: #{item.origin}
-          p Tone: #{item.tone}
-          p Clarity: 
-            span(class="clarity-value", data-index=index) #{item.clarity}
+      each holos in items
+        .col-sm-3.border.p-2
+          h3 Origin: #{holos.origin}
+          p Tone: #{holos.tone} 
+          p Clarity: #{holos.clarity}
 
-  script.
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll(".clarity-value").forEach(function (element) {
-        element.addEventListener("click", function () {
-          const index = this.getAttribute("data-index");
-          alert(`You purchased item ${index}`);
-        });
-      });
-    });
-
-
+  p
+    a(href="/") Back to Home
