@@ -6,3 +6,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+.HologramsAttr {
+  background-color: rgb(141, 28, 39);
+  width: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.HologramsAttr:hover {
+  background-color: mediumaquamarine;
+  transform: scale(1.05);
+}
+
+  

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  - let Hologramsid = toShow._id
+  - let origin = toShow.origin
+  - let tone = toShow.tone
+  - let clarity = toShow.clarity
+
+  div
+    div.row
+      div(class='HologramsAttr mr-3') Costume ID is:
+      div #{Hologramsid}
+
+    div.row
+      div(class='HologramsAttr mr-3') Holograms origin:
+      div #{origin}
+
+    div.row
+      div(class='HologramsAttr mr-3') Holograms tone is:
+      div #{tone}
+
+    div.row
+      div(class='HologramsAttr mr-3') Holograms Clarity is:
+      div #{clarity}

@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let Hologramsid = toShow._id
+    - let origin  = toShow.origin
+    - let tone = toShow.tone
+    - let clarity = toShow.clarity
+    - let actionid = "/resource/Holograms/" + Hologramsid
+    script let actionid = "#{actionid}"
+
+    div
+      div.row
+        div(class='HologramsAttr mr-3') Holograms ID is:
+        div #{Hologramsid}
+      div.row
+        div(class='HologramsAttr mr-3') Holograms Type is:
+        div #{origin}
+      div.row
+        div(class='HologramsAttr mr-3') Holograms Size is:
+        div #{tone}
+      div.row
+        div(class='HologramsAttr mr-3') Holograms Cost is:
+        div #{clarity}
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+      // Go back to the home page for the Holograms collection
+      window.location.href = '/Holograms'
+    }
+
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      // delete first
+      fetch(actionid, {
+        method: 'DELETE' // Don't need a body for the delete
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Delete succeded")
+        window.location.href = '/Holograms'
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error)
+      });
+    }

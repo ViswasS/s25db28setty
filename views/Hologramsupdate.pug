@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1= title
+  - let Hologramsid = toShow._id
+  - let origin = toShow.origin
+  - let tone = toShow.tone
+  - let clarity = toShow.clarity
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{Hologramsid}
+
+  - let actionid = "/resource/Holograms/" + Hologramsid
+
+  form(id='HologramsForm', action=actionid, method="PUT")
+    div.form-group
+      label.HologramsAttr(for='origin') Holograms type
+      input#Holograms_type(type='text', name='origin', value=origin)
+    div.form-group
+      label.HologramsAttr(for='tone') Holograms size
+      input#size(type='text', name='tone', value=tone)
+    div.form-group
+      label.HologramsAttr(for='clarity') Holograms cost
+      input#cost(type='number', name='clarity', value=clarity)
+    input(type="submit")
+
+  script.
+    document.forms['HologramsForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error)
+      });
+    });
