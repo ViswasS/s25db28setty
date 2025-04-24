@@ -2,16 +2,39 @@ extends layout
 
 block content
   h1= title
-  - let items = results
-  p Below are some holograms search results:
+  p Below are some Holograms search results:
+
+  // Add New Hologram Button
+  a(href='/Holograms/create')
+    button.btn.btn-success.mb-3(type='button') Create
 
   .container-fluid
     .row
-      each Holograms in items
-        .col-sm-3.border.p-2
-          h3 Origin: #{Holograms.origin}
-          p Tone: #{Holograms.tone} 
-          p Clarity: #{Holograms.clarity}
+      each Holograms in results
+        .col-sm-3.border.p-3.m-2.rounded.shadow
+          h4 origin: #{Holograms.origin}
+          p tone: #{Holograms.tone} 
+          p clarity: #{Holograms.clarity}
+
+          // View Button
+          button.btn.btn-info.mb-2(
+            onclick=`dispatch('/Holograms/${Holograms._id}')`
+          ) Detail
+
+          // Update Button
+          button.btn.btn-warning.mb-2(
+            onclick=`dispatch('/Holograms/update?id=${Holograms._id}')`
+          ) Update
+
+          // Delete Button
+          button.btn.btn-danger(
+            onclick=`dispatch('/Holograms/delete?id=${Holograms._id}')`
+          ) Delete
+
+  script.
+    function dispatch(path) {
+      window.location.href = path;
+    }
 
   p
     a(href="/") Back to Home
